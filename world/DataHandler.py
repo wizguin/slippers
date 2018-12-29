@@ -44,6 +44,7 @@ class DataHandler(object):
     def close(self, user):
         """
         Closes a user, called by Protocol when a user disconnects.
+
         If a user is fully logged into the game, they must also be
         removed from their room.
         """
