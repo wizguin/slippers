@@ -35,10 +35,15 @@ class Join(Plugin):
     def add(self, user):
         """Adds a player in to their new room."""
         int_id = user.get_int_id(self.rooms)
-
         self.rooms[user.data.room]["users"].append(user)
-        user.send(["jr", int_id, user.data.room, self.get_strings(user.data.room)])
-        self.packet.send_room(["ap", int_id, user.get_string()], user.data.room)
+
+        # Games
+        if self.rooms[user.data.room]["isGame"] == "true":
+            user.send(["jg", int_id, user.data.room])
+        # Rooms
+        else:
+            user.send(["jr", int_id, user.data.room, self.get_strings(user.data.room)])
+            self.packet.send_room(["ap", int_id, user.get_string()], user.data.room)
 
     def remove(self, user):
         """Removes a player from their current room."""

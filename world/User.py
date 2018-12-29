@@ -10,6 +10,7 @@ class User(object):
     def __init__(self, transport):
         self.transport = transport
         self.data = None
+        self.coins_earned = None
 
     def get_string(self):
         """Generates a user string, from user data."""

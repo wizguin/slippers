@@ -1,4 +1,7 @@
 {
   "name":"MiniGame",
-  "events": {}
+  "events": {
+    "zo":"game_over",
+    "ac":"add_coins"
+  }
 }
