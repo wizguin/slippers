@@ -1,0 +1,202 @@
+{
+  "100":{
+    "internal":"1",
+    "name":"town",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "110":{
+    "internal":"2",
+    "name":"coffee",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "111":{
+    "internal":"3",
+    "name":"book",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "120":{
+    "internal":"4",
+    "name":"dance",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "121":{
+    "internal":"5",
+    "name":"lounge",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "130":{
+    "internal":"6",
+    "name":"shop",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "200":{
+    "internal":"7",
+    "name":"village",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "210":{
+    "internal":"8",
+    "name":"sport",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "220":{
+    "internal":"9",
+    "name":"lodge",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "230":{
+    "internal":"10",
+    "name":"mtn",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "300":{
+    "internal":"11",
+    "name":"plaza",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "310":{
+    "internal":"12",
+    "name":"pet",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "320":{
+    "internal":"13",
+    "name":"dojo",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "330":{
+    "internal":"14",
+    "name":"pizza",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "800":{
+    "internal":"15",
+    "name":"dock",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "801":{
+    "internal":"16",
+    "name":"forts",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "802":{
+    "internal":"17",
+    "name":"rink",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "803":{
+    "internal":"18",
+    "name":"agent",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "804":{
+    "internal":"19",
+    "name":"berg",
+    "users":[
+
+    ],
+    "isGame":"false"
+  },
+  "900":{
+    "internal":"20",
+    "name":"astro",
+    "users":[
+
+    ],
+    "isGame":"true"
+  },
+  "901":{
+    "internal":"21",
+    "name":"beans",
+    "users":[
+
+    ],
+    "isGame":"true"
+  },
+  "902":{
+    "internal":"22",
+    "name":"puffle",
+    "users":[
+
+    ],
+    "isGame":"true"
+  },
+  "903":{
+    "internal":"23",
+    "name":"biscuit",
+    "users":[
+
+    ],
+    "isGame":"true"
+  },
+  "904":{
+    "internal":"24",
+    "name":"fish",
+    "users":[
+
+    ],
+    "isGame":"true"
+  },
+  "999":{
+    "internal":"25",
+    "name":"sled",
+    "users":[
+
+    ],
+    "isGame":"true"
+  }
+}

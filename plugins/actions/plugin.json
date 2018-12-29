@@ -1,0 +1,9 @@
+{
+  "name":"Actions",
+  "events": {
+    "sp":"send_position",
+    "sf":"send_frame",
+    "sa":"send_frame",
+    "sb":"snowball"
+  }
+}

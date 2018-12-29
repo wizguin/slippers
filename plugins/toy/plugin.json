@@ -1,0 +1,7 @@
+{
+  "name":"Toy",
+  "events": {
+    "at":"add_toy",
+    "rt":"remove_toy"
+  }
+}

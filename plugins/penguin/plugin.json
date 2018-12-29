@@ -1,0 +1,9 @@
+{
+  "name":"Penguin",
+  "events": {
+    "h":"heartbeat",
+    "bl":"buddy_list",
+    "nl":"ignore_list",
+    "il":"item_list"
+  }
+}

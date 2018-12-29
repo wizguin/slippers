@@ -1,0 +1,9 @@
+{
+  "name":"Chat",
+  "events": {
+    "sm":"send_message",
+    "ss":"send_safe",
+    "sj":"send_joke",
+    "se":"send_emote"
+  }
+}

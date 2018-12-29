@@ -1,0 +1,7 @@
+{
+  "name":"Login",
+  "events": {
+    "verChk":"version_check",
+    "login":"login"
+  }
+}

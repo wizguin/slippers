@@ -1,0 +1,7 @@
+{
+  "name":"Join",
+  "events": {
+    "js":"join_server",
+    "jr":"join_room"
+  }
+}
