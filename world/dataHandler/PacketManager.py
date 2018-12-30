@@ -8,7 +8,7 @@ class PacketManager(object):
 
     @staticmethod
     def make(packet, *args):
-        return "%" + "%".join(["xt", packet, "%".join(args)]) + "%"
+        return "%" + "%".join(["xt", packet, "%".join(map(str, args))]) + "%"
 
     @staticmethod
     def parse(packet):

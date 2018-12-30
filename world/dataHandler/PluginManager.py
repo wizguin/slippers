@@ -32,7 +32,6 @@ class PluginManager(object):
 
                 # Creates the plugin object
                 plugin_object = getattr(plugin_module, plugin_config["name"])(handler.users,
-                                                                              handler.database,
                                                                               handler.rooms,
                                                                               handler.packet)
 

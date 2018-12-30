@@ -8,9 +8,9 @@ class Server(object):
     Initialises a server.
     """
 
-    def __init__(self, config, world_id, users, handler):
+    def __init__(self, config, world_id, users, db, handler):
         self.loop = asyncio.get_event_loop()
-        self.coro = self.loop.create_server(lambda: Protocol(users, handler),
+        self.coro = self.loop.create_server(lambda: Protocol(users, db, handler),
                                             config["world"][world_id]["host"],
                                             config["world"][world_id]["port"])
         self.server = self.loop.run_until_complete(self.coro)

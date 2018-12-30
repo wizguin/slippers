@@ -9,12 +9,13 @@ class Protocol(asyncio.Protocol):
     Created every time a connection is made.
     """
 
-    def __init__(self, users, handler):
+    def __init__(self, users, db, handler):
         self.users = users
+        self.db = db
         self.handler = handler
 
     def connection_made(self, transport):
-        self.user = User(transport)
+        self.user = User(transport, self.db)
         self.users.append(self.user)
 
     def data_received(self, data):

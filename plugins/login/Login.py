@@ -10,13 +10,11 @@ class Login(Plugin):
     A plugin that enables logging into the game.
     """
 
-    def __init__(self, users, database, rooms, packet):
+    def __init__(self, users, rooms, packet):
         self.VERSION = "097"
         self.LOGIN_KEY_LENGTH = 15
-        # User will spawn in one of following rooms
-        self.SPAWN_ROOMS = ("100", "300", "800", "804")
 
-        super(Login, self).__init__(users, database, rooms, packet)
+        super(Login, self).__init__(users, rooms, packet)
 
     # Events
 
@@ -26,22 +24,25 @@ class Login(Plugin):
             user.send("<msg t='sys'><body action='apiOK' r='0'></body></msg>")
 
     def login(self, data, user):
+        """Verifies login and connects user to game."""
         nick = data["msg"]["body"]["login"]["nick"].lower()
         pword = data["msg"]["body"]["login"]["pword"]
-        user_data = self.database.select("users", "username", nick)
+
+        # Fetch user data from database session, and build it into user object
+        user.data = user.db.session.query(user.db.User).filter_by(username=nick).first()
 
         # Incorrect login key
-        if str(pword) != user_data["loginKey"]:
+        if str(pword) != user.data.loginKey:
             user.send(["e", "-1", "101"])
         else:
-            self.update_login_key(nick)
-            # Builds user data into the user object as a namespace
-            user.data = SimpleNamespace(** {**user_data, **{"room": random.choice(self.SPAWN_ROOMS),
-                                                            "x": "0", "y": "0", "frame": "0"}})
+            self.update_login_key(user)
             user.send(["l", "-1"])
 
     # Functions
 
     def update_login_key(self, user):
-        new_key = "".join(random.choice(string.ascii_letters + string.digits) for i in range(self.LOGIN_KEY_LENGTH))
-        self.database.update("users", "loginKey", new_key, "username", user)
+        """Generates a new login key for user."""
+        user.data.loginKey = "".join(random.choice(string.ascii_letters + string.digits)
+                                     for i in range(self.LOGIN_KEY_LENGTH))
+        # Commit here to be safe
+        user.db.session.commit()

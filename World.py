@@ -15,11 +15,11 @@ class World(Server):
         print("[World] Starting world {}".format(world_id))
 
         self.users = []
-        self.database = Database(config)
-        self.handler = DataHandler(self.users, self.database)
+        self.db = Database(config)
+        self.handler = DataHandler(self.users)
 
         # Start server
-        super(World, self).__init__(config, world_id, self.users, self.handler)
+        super(World, self).__init__(config, world_id, self.users, self.db, self.handler)
 
 
 def main():

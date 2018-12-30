@@ -12,9 +12,8 @@ class DataHandler(object):
     Handles game server data.
     """
 
-    def __init__(self, users, database):
+    def __init__(self, users):
         self.users = users  # Socket assigned to user object
-        self.database = database
 
         file = open("config/rooms.json", "r")
         self.rooms = json.loads(file.read())
@@ -26,6 +25,13 @@ class DataHandler(object):
         self.POLICY = "<cross-domain-policy><allow-access-from domain='*' to-ports='*' /></cross-domain-policy>"
 
     def handle(self, data, user):
+        """
+        Commits any modified data to the database, and parses
+        incoming data.
+        """
+        if user.db.session.dirty:
+            user.db.session.commit()
+
         for data in filter(None, data.rstrip().split("\x00")):
             if data == "<policy-file-request/>":
                 user.send(self.POLICY)
@@ -50,8 +56,10 @@ class DataHandler(object):
         """
         if user.data:
             self.packet.send_room(["rp", user.get_int_id(self.rooms),
-                                   user.data.id], user.data.room)
-            self.rooms[user.data.room]["users"].remove(user)
+                                   user.data.id], user.room)
+            self.rooms[user.room]["users"].remove(user)
+            # Commit changes to database
+            user.db.session.commit()
 
         self.users.remove(user)
         del user

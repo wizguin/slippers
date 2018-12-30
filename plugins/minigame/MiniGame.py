@@ -8,12 +8,12 @@ class MiniGame(Plugin):
     A plugin that handles the outcome of minigames.
     """
 
-    def __init__(self, users, database, rooms, packet):
+    def __init__(self, users, rooms, packet):
         self.MAX_COINS = 1000000
         # Minigames that give the score as their coin reward
         self.DEFAULT_SCORE_GAMES = ("904", "905", "906", "912", "916", "917", "918", "919", "950", "952")
 
-        super(MiniGame, self).__init__(users, database, rooms, packet)
+        super(MiniGame, self).__init__(users, rooms, packet)
 
     # Events
 
@@ -21,14 +21,14 @@ class MiniGame(Plugin):
         """Finishes the minigame and prepares to exit."""
         score = int(data["args"][1])
 
-        if self.rooms[user.data.room]["isGame"] == "true":
+        if self.rooms[user.room]["isGame"] == "true":
             # Disconnect the user if coin overdose is triggered
             if self.coin_overdose(score):
                 user.send(["e", "-1", "10"])
                 user.transport.close()
             else:
                 # Coins to pay the user
-                user.coins_earned = self.coins_earned(user.data.room, score)
+                user.coins_earned = self.coins_earned(user.room, score)
                 user.send(["zo", "-1"])
 
     def add_coins(self, data, user):
@@ -40,10 +40,9 @@ class MiniGame(Plugin):
 
         2. Cap the new coin total at MAX_COINS.
         """
-        if user.coins_earned and self.rooms[user.data.room]["isGame"] == "true":
+        if user.coins_earned and self.rooms[user.room]["isGame"] == "true":
             coins = max(0, min(int(user.data.coins) + user.coins_earned, self.MAX_COINS))
-            user.data.coins = str(coins)
-            self.database.update("users", "coins", user.data.coins, "username", user.data.username)
+            user.data.coins = coins
 
             user.send(["ac", "-1", user.data.coins])
 

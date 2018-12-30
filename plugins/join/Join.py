@@ -6,8 +6,8 @@ class Join(Plugin):
     A plugin that enables joining the server and rooms.
     """
 
-    def __init__(self, users, database, rooms, packet):
-        super(Join, self).__init__(users, database, rooms, packet)
+    def __init__(self, users, rooms, packet):
+        super(Join, self).__init__(users, rooms, packet)
 
     # Events
 
@@ -23,9 +23,9 @@ class Join(Plugin):
 
         self.remove(user)
 
-        user.data.room = data["args"][1]
-        user.data.x = x
-        user.data.y = y
+        user.room = data["args"][1]
+        user.x = x
+        user.y = y
         user.frame = "0"
 
         self.add(user)
@@ -35,21 +35,21 @@ class Join(Plugin):
     def add(self, user):
         """Adds a player in to their new room."""
         int_id = user.get_int_id(self.rooms)
-        self.rooms[user.data.room]["users"].append(user)
+        self.rooms[user.room]["users"].append(user)
 
         # Games
-        if self.rooms[user.data.room]["isGame"] == "true":
-            user.send(["jg", int_id, user.data.room])
+        if self.rooms[user.room]["isGame"] == "true":
+            user.send(["jg", int_id, user.room])
         # Rooms
         else:
-            user.send(["jr", int_id, user.data.room, self.get_strings(user.data.room)])
-            self.packet.send_room(["ap", int_id, user.get_string()], user.data.room)
+            user.send(["jr", int_id, user.room, self.get_strings(user.room)])
+            self.packet.send_room(["ap", int_id, user.get_string()], user.room)
 
     def remove(self, user):
         """Removes a player from their current room."""
         self.packet.send_room(["rp", user.get_int_id(self.rooms),
-                               user.data.id], user.data.room)
-        self.rooms[user.data.room]["users"].remove(user)
+                               user.data.id], user.room)
+        self.rooms[user.room]["users"].remove(user)
 
     def get_strings(self, room_id):
         """Gets strings of all users in a given room."""

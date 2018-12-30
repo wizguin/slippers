@@ -1,3 +1,5 @@
+from random import choice
+
 from world.dataHandler.PacketManager import PacketManager
 
 
@@ -7,29 +9,41 @@ class User(object):
     database along with other in game data.
     """
 
-    def __init__(self, transport):
+    def __init__(self, transport, db):
         self.transport = transport
+        self.db = db
         self.data = None
+
+        # User will spawn in one of following rooms
+        self.room = choice(("100", "300", "800", "804"))
+        self.x = "0"
+        self.y = "0"
+        self.frame = "0"
         self.coins_earned = None
 
     def get_string(self):
-        """Generates a user string, from user data."""
-        return "|".join((self.data.id, self.data.username,
-                        self.data.color, self.data.head,
-                        self.data.face, self.data.neck,
-                        self.data.body, self.data.hand,
-                         self.data.feet, self.data.flag,
-                         self.data.photo, self.data.x,
-                         self.data.y, self.data.frame,
-                         "1", "0"))
+        """
+        Generates a string from user data,
+        map is used to string all variables.
+        """
+        return "|".join(map(str,
+                            (self.data.id, self.data.username,
+                             self.data.color, self.data.head,
+                             self.data.face, self.data.neck,
+                             self.data.body, self.data.hand,
+                             self.data.feet, self.data.flag,
+                             self.data.photo, self.x,
+                             self.y, self.frame,
+                             "1", "0")
+                            ))
 
     def get_int_id(self, rooms):
         """Gets a user's internal room id."""
-        if self.data.room in rooms:
-            return rooms[self.data.room]["internal"]
+        if self.room in rooms:
+            return rooms[self.room]["internal"]
         # Igloos
-        elif int(self.data.room) > 999:
-            return str(int(self.data.room) - 1000)
+        elif int(self.room) > 999:
+            return str(int(self.room) - 1000)
         # Unknown room
         else:
             return "-1"

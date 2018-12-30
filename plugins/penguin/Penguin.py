@@ -5,8 +5,8 @@ class Penguin(Plugin):
     A plugin that enables essential player features.
     """
 
-    def __init__(self, users, database, rooms, packet):
-        super(Penguin, self).__init__(users, database, rooms, packet)
+    def __init__(self, users, rooms, packet):
+        super(Penguin, self).__init__(users, rooms, packet)
 
     def heartbeat(self, data, user):
         user.send(["h", "-1"])
