@@ -1,4 +1,7 @@
 {
   "name":"Items",
-  "events": {}
+  "events": {
+    "ai":"add_item",
+    "up":"update_player"
+  }
 }
