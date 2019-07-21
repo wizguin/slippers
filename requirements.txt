@@ -1,0 +1,3 @@
+SQLAlchemy==1.2.15
+xmltodict==0.11.0
+observable==1.0.3
