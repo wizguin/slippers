@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 27, 2018 at 09:37 PM
+-- Generation Time: Jul 21, 2019 at 05:57 PM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.2.0
 
@@ -25,6 +25,17 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `inventory`
+--
+
+CREATE TABLE `inventory` (
+  `userId` int(11) NOT NULL,
+  `itemId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -36,7 +47,6 @@ CREATE TABLE `users` (
   `rank` int(1) NOT NULL,
   `banned` int(1) NOT NULL,
   `coins` int(11) NOT NULL,
-  `items` text NOT NULL,
   `buddies` text NOT NULL,
   `head` int(11) NOT NULL,
   `face` int(11) NOT NULL,
@@ -53,18 +63,34 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `loginKey`, `rank`, `banned`, `coins`, `items`, `buddies`, `head`, `face`, `neck`, `body`, `hand`, `feet`, `color`, `photo`, `flag`) VALUES
-(1, 'User', '$2y$10$gB2PVvlGm30WSExn87on0.2httR7onfZFISHt92czCiHrvsB48O3m', 'MgBaHaKJfhGIXT8', 2, 0, 10000, '[\"413\", \"403\", \"201\", \"404\", \"401\", \"405\", \"220\", \"131\", \"103\", \"408\", \"212\", \"481\", \"106\", \"301\", \"244\", \"412\", \"252\", \"219\", \"221\", \"101\", \"214\", \"102\", \"503\", \"8\", \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"9\", \"10\", \"11\", \"12\", \"452\", \"172\", \"484\", \"502\", \"410\", \"222\", \"500\", \"501\", \"504\", \"505\", \"506\", \"507\", \"508\", \"509\", \"510\", \"511\", \"512\", \"513\", \"514\", \"515\", \"516\", \"517\", \"518\", \"519\", \"235\", \"234\", \"417\", \"453\", \"418\", \"402\", \"233\", \"107\", \"800\", \"352\", \"176\", \"175\", \"351\", \"363\", \"414\", \"173\", \"237\", \"238\", \"421\", \"420\", \"406\", \"253\", \"456\", \"108\", \"171\", \"419\", \"216\", \"451\", \"422\", \"240\", \"424\", \"174\", \"218\", \"262\", \"110\", \"550\", \"263\", \"425\", \"520\", \"524\", \"522\", \"521\", \"523\", \"407\", \"366\", \"423\", \"181\", \"261\", \"551\"]\r\n', '[]', 413, 0, 0, 0, 0, 0, 4, 0, 0);
+INSERT INTO `users` (`id`, `username`, `password`, `loginKey`, `rank`, `banned`, `coins`, `buddies`, `head`, `face`, `neck`, `body`, `hand`, `feet`, `color`, `photo`, `flag`) VALUES
+(1, 'User', '$2y$10$gB2PVvlGm30WSExn87on0.2httR7onfZFISHt92czCiHrvsB48O3m', 'SeMBxfklcAQ3MTX', 2, 0, 10000, '[]', 0, 0, 0, 0, 0, 0, 4, 0, 0);
 
 --
 -- Indexes for dumped tables
 --
 
 --
+-- Indexes for table `inventory`
+--
+ALTER TABLE `inventory`
+  ADD PRIMARY KEY (`userId`,`itemId`) USING BTREE;
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `inventory`
+--
+ALTER TABLE `inventory`
+  ADD CONSTRAINT `fk_inventory_users` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
