@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from world.database.Tables import User
+from world.database.Tables import User, Inventory
 
 
 class Database(object):
@@ -18,10 +18,11 @@ class Database(object):
 
         # Table object references
         self.User = User
+        self.Inventory = Inventory
 
         # Test the connection
         try:
             self.session.execute("select 1")
             print("[Database] Connection successful")
-        except:
+        except Exception:
             print("[Database] Could not connect to MySQL database")

@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
 Base = declarative_base()
 
@@ -19,7 +20,6 @@ class User(Base):
     rank = Column(Integer)
     banned = Column(Integer)
     coins = Column(Integer)
-    items = Column(String)
     buddies = Column(String)
     head = Column(Integer)
     face = Column(Integer)
@@ -30,3 +30,17 @@ class User(Base):
     color = Column(Integer)
     photo = Column(Integer)
     flag = Column(Integer)
+
+
+class Inventory(Base):
+    """
+    A declarative base for an inventory, which is mapped to
+    the inventory table of the database.
+    """
+
+    __tablename__ = "inventory"
+
+    userId = Column(ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), primary_key=True)
+    itemId = Column(Integer, primary_key=True)
+
+    user = relationship("User")

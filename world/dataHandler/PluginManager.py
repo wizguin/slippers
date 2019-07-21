@@ -51,3 +51,5 @@ class PluginManager(object):
             self.events[event](data, user)
         except KeyError:
             print("[PluginManager] Event not handled: {} {}".format(event, data))
+        except Exception:
+            print("[PluginManager] Error handling event: {} {}".format(event, data))

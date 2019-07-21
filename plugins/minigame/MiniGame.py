@@ -4,7 +4,7 @@ from world.dataHandler.pluginManager.Plugin import Plugin
 
 
 class MiniGame(Plugin):
-    """"
+    """
     A plugin that handles the outcome of minigames.
     """
 
@@ -43,6 +43,7 @@ class MiniGame(Plugin):
         if user.coins_earned and self.rooms[user.room]["isGame"] == "true":
             coins = max(0, min(int(user.data.coins) + user.coins_earned, self.MAX_COINS))
             user.data.coins = coins
+            user.db.session.commit()
 
             user.send(["ac", "-1", user.data.coins])
 

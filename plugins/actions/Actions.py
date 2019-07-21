@@ -2,7 +2,7 @@ from world.dataHandler.pluginManager.Plugin import Plugin
 
 
 class Actions(Plugin):
-    """"
+    """
     A plugin that enables penguin movement and actions.
     """
 

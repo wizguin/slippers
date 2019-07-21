@@ -13,6 +13,7 @@ class User(object):
         self.transport = transport
         self.db = db
         self.data = None
+        self.inventory = None
 
         # User will spawn in one of following rooms
         self.room = choice(("100", "300", "800", "804"))
@@ -27,14 +28,22 @@ class User(object):
         map is used to string all variables.
         """
         return "|".join(map(str,
-                            (self.data.id, self.data.username,
-                             self.data.color, self.data.head,
-                             self.data.face, self.data.neck,
-                             self.data.body, self.data.hand,
-                             self.data.feet, self.data.flag,
-                             self.data.photo, self.x,
-                             self.y, self.frame,
-                             "1", "0")
+                            (self.data.id,
+                             self.data.username,
+                             self.data.color,
+                             self.data.head,
+                             self.data.face,
+                             self.data.neck,
+                             self.data.body,
+                             self.data.hand,
+                             self.data.feet,
+                             self.data.flag,
+                             self.data.photo,
+                             self.x,
+                             self.y,
+                             self.frame,
+                             "1",
+                             "0")
                             ))
 
     def get_int_id(self, rooms):

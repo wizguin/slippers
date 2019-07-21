@@ -6,7 +6,7 @@ from world.dataHandler.pluginManager.Plugin import Plugin
 
 
 class Login(Plugin):
-    """"
+    """
     A plugin that enables logging into the game.
     """
 
@@ -30,6 +30,8 @@ class Login(Plugin):
 
         # Fetch user data from database session, and build it into user object
         user.data = user.db.session.query(user.db.User).filter_by(username=nick).first()
+        user.inventory = [i[0] for i in
+                          user.db.session.query(user.db.Inventory.itemId).filter_by(userId=user.data.id)]
 
         # Incorrect login key
         if str(pword) != user.data.loginKey:
@@ -44,5 +46,4 @@ class Login(Plugin):
         """Generates a new login key for user."""
         user.data.loginKey = "".join(random.choice(string.ascii_letters + string.digits)
                                      for i in range(self.LOGIN_KEY_LENGTH))
-        # Commit here to be safe
         user.db.session.commit()

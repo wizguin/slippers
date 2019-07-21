@@ -26,25 +26,32 @@ class DataHandler(object):
 
     def handle(self, data, user):
         """
-        Commits any modified data to the database, and parses
-        incoming data.
+        Handles incoming XML and XT packets.
         """
-        if user.db.session.dirty:
-            user.db.session.commit()
-
         for data in filter(None, data.rstrip().split("\x00")):
+            print(data)
+
             if data == "<policy-file-request/>":
                 user.send(self.POLICY)
+
+            # Handling XML
             elif data.startswith("<"):
-                parsed = xmltodict.parse(data, dict_constructor=dict)
-                self.fire_event(parsed["msg"]["body"]["@action"], parsed, user)
-            elif data.startswith("%xt"):
-                parsed = self.packet.parse(data)
-                self.fire_event(parsed["action"], parsed, user)
+                try:
+                    parsed = xmltodict.parse(data, dict_constructor=dict)
+                    self.fire_event(parsed["msg"]["body"]["@action"], parsed, user)
+                except Exception:
+                    print("[DataHandler] Bad XML: {}".format(data))
+
+            # Handling XT
+            elif data.startswith("%xt%"):
+                try:
+                    parsed = self.packet.parse(data)
+                    self.fire_event(parsed["action"], parsed, user)
+                except Exception:
+                    print("[DataHandler] Bad XT: {}".format(data))
 
     def fire_event(self, event, data, user):
         """Fires events to plugins."""
-        #print("[DataHandler] Event fired: {} {}".format(event, data))
         self.obs.trigger("event", event, data, user)
 
     def close(self, user):

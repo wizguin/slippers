@@ -2,7 +2,7 @@ from world.dataHandler.pluginManager.Plugin import Plugin
 
 
 class Toy(Plugin):
-    """"
+    """
     A plugin that enables adding and removing a toy from a penguin.
     """
 

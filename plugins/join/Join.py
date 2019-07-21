@@ -13,7 +13,7 @@ class Join(Plugin):
 
     def join_server(self, data, user):
         """Initial joining of the server."""
-        user.send(["js", "-1", "0", "1", "0", "0"])
+        user.send(["js", "-1", "1", "1", "0", "0"])
         self.add(user)
 
     def join_room(self, data, user, x="0", y="0"):

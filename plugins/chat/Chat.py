@@ -2,7 +2,7 @@ from world.dataHandler.pluginManager.Plugin import Plugin
 
 
 class Chat(Plugin):
-    """"
+    """
     A plugin that enables sending messages and emotes.
     """
 
