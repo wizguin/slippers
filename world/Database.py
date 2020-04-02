@@ -24,5 +24,6 @@ class Database(object):
         try:
             self.session.execute("select 1")
             print("[Database] Connection successful")
-        except Exception:
+        except Exception as e:
             print("[Database] Could not connect to MySQL database")
+            print(str(e))
