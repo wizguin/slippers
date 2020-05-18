@@ -23,6 +23,10 @@ class Join(Plugin):
 
         self.remove(user)
 
+        if len(data["args"]) == 4:
+            x = data["args"][2]
+            y = data["args"][3]
+
         user.room = data["args"][1]
         user.x = x
         user.y = y
