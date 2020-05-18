@@ -64,10 +64,15 @@ class DataHandler(object):
         If a user is fully logged into the game, they must also be
         removed from their room.
         """
+
         if user.data:
-            self.packet.send_room(["rp", user.get_int_id(self.rooms),
-                                   user.data.id], user.room)
-            self.rooms[user.room]["users"].remove(user)
+
+            if user.room:
+                if user in self.rooms[user.room]["users"]:
+                    self.packet.send_room(["rp", user.get_int_id(self.rooms),
+                                user.data.id], user.room)
+                    self.rooms[user.room]["users"].remove(user)
+
             # Commit changes to database
             user.db.session.commit()
 

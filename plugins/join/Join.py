@@ -1,3 +1,5 @@
+from random import choice
+
 from world.dataHandler.pluginManager.Plugin import Plugin
 
 
@@ -13,6 +15,8 @@ class Join(Plugin):
 
     def join_server(self, data, user):
         """Initial joining of the server."""
+        # User will spawn in one of following rooms
+        user.room = choice(("100", "300", "800", "804"))
         user.send(["js", "-1", "1", "1", "0", "0"])
         self.add(user)
 

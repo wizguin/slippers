@@ -1,5 +1,3 @@
-from random import choice
-
 from world.dataHandler.PacketManager import PacketManager
 
 
@@ -15,8 +13,7 @@ class User(object):
         self.data = None
         self.inventory = None
 
-        # User will spawn in one of following rooms
-        self.room = choice(("100", "300", "800", "804"))
+        self.room = None
         self.x = "0"
         self.y = "0"
         self.frame = "0"

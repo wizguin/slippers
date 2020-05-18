@@ -28,6 +28,14 @@ class Login(Plugin):
         nick = data["msg"]["body"]["login"]["nick"].lower()
         pword = data["msg"]["body"]["login"]["pword"]
 
+        # Disconnect if logged in already
+        online = {user.data.username.lower(): user for user in self.users if user.data}
+
+        if nick.lower() in online:
+            print(online[nick])
+            online[nick].send(["e", "-1", "1"])
+            online[nick].transport.close()
+
         # Fetch user data from database session, and build it into user object
         user.data = user.db.session.query(user.db.User).filter_by(username=nick).first()
         user.inventory = [i[0] for i in

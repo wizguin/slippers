@@ -24,7 +24,7 @@ class MiniGame(Plugin):
         if self.rooms[user.room]["isGame"] == "true":
             # Disconnect the user if coin overdose is triggered
             if self.coin_overdose(score):
-                user.send(["e", "-1", "10"])
+                user.send(["e", "-1", "1"])
                 user.transport.close()
             else:
                 # Coins to pay the user
