@@ -2,6 +2,7 @@
   "name":"Join",
   "events": {
     "js":"join_server",
-    "jr":"join_room"
+    "jr":"join_room",
+    "jp":"join_player"
   }
 }

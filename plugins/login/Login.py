@@ -11,7 +11,7 @@ class Login(Plugin):
     """
 
     def __init__(self, users, config, packet):
-        self.VERSION = "097"
+        self.VERSION = "097" # 097 for 2005 client, 130 for 2007 client
         self.LOGIN_KEY_LENGTH = 15
 
         super(Login, self).__init__(users, config, packet)

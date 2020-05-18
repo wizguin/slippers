@@ -16,20 +16,28 @@ class Join(Plugin):
         user.send(["js", "-1", "1", "1", "0", "0"])
         self.add(user)
 
-    def join_room(self, data, user, x="0", y="0"):
+    def join_room(self, data, user):
         """Joining a new room."""
         # Filters out | to prevent string injection
         data["args"] = [i.replace("|", "") for i in data["args"]]
 
         self.remove(user)
 
-        if len(data["args"]) == 4:
-            x = data["args"][2]
-            y = data["args"][3]
-
         user.room = data["args"][1]
-        user.x = x
-        user.y = y
+        user.x = data["args"][2]
+        user.y = data["args"][3]
+        user.frame = "0"
+
+        self.add(user)
+
+    # TODO: add functionality
+    def join_player(self, data, user):
+        """Joining a player's igloo."""
+        self.remove(user)
+
+        user.room = "100"
+        user.x = "0"
+        user.y = "0"
         user.frame = "0"
 
         self.add(user)
