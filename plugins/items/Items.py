@@ -6,7 +6,7 @@ class Items(Plugin):
     A plugin that enables adding and wearing items.
     """
 
-    def __init__(self, users, rooms, packet):
+    def __init__(self, users, config, packet):
         self.ITEMS = [
             "color",
             "head",
@@ -19,7 +19,7 @@ class Items(Plugin):
             "photo"
         ]
 
-        super(Items, self).__init__(users, rooms, packet)
+        super(Items, self).__init__(users, config, packet)
 
     def add_item(self, data, user):
         """Adds an item to user's inventory."""
@@ -27,13 +27,24 @@ class Items(Plugin):
 
         if item_id in user.inventory:
             user.send(["e", "-1", "400"])
-        else:
+
+        elif str(item_id) in self.items:
+            cost = self.items[str(item_id)]["cost"]
+
+            if user.data.coins < cost:
+                # Insufficient funds
+                return user.send(["e", "-1", "401"])
+
             user.inventory.append(item_id)
             user.db.session.add(user.db.Inventory(userId=user.data.id, itemId=item_id))
+            user.data.coins -= cost
             user.db.session.commit()
-            user.data.coins -= 0
 
             user.send(["ai", "-1", item_id, user.data.coins])
+
+        else:
+            # Item unavailable
+            user.send(["e", "-1", "402"])
 
     def update_player(self, data, user):
         """Updates users worn items."""

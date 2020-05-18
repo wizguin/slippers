@@ -6,8 +6,8 @@ class Toy(Plugin):
     A plugin that enables adding and removing a toy from a penguin.
     """
 
-    def __init__(self, users, rooms, packet):
-        super(Toy, self).__init__(users, rooms, packet)
+    def __init__(self, users, config, packet):
+        super(Toy, self).__init__(users, config, packet)
 
     def add_toy(self, data, user):
         toy = data["args"][1]

@@ -6,8 +6,8 @@ class Actions(Plugin):
     A plugin that enables penguin movement and actions.
     """
 
-    def __init__(self, users, rooms, packet):
-        super(Actions, self).__init__(users, rooms, packet)
+    def __init__(self, users, config, packet):
+        super(Actions, self).__init__(users, config, packet)
 
     def send_position(self, data, user):
         user.x = data["args"][1]

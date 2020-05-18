@@ -6,8 +6,8 @@ class Join(Plugin):
     A plugin that enables joining the server and rooms.
     """
 
-    def __init__(self, users, rooms, packet):
-        super(Join, self).__init__(users, rooms, packet)
+    def __init__(self, users, config, packet):
+        super(Join, self).__init__(users, config, packet)
 
     # Events
 

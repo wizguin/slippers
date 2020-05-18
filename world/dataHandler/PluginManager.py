@@ -32,7 +32,7 @@ class PluginManager(object):
 
                 # Creates the plugin object
                 plugin_object = getattr(plugin_module, plugin_config["name"])(handler.users,
-                                                                              handler.rooms,
+                                                                              {"rooms": handler.rooms, "items": handler.items},
                                                                               handler.packet)
 
                 # Loads plugin events

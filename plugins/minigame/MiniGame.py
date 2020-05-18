@@ -8,12 +8,12 @@ class MiniGame(Plugin):
     A plugin that handles the outcome of minigames.
     """
 
-    def __init__(self, users, rooms, packet):
+    def __init__(self, users, config, packet):
         self.MAX_COINS = 1000000
         # Minigames that give the score as their coin reward
         self.DEFAULT_SCORE_GAMES = ("904", "905", "906", "912", "916", "917", "918", "919", "950", "952")
 
-        super(MiniGame, self).__init__(users, rooms, packet)
+        super(MiniGame, self).__init__(users, config, packet)
 
     # Events
 

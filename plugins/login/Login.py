@@ -10,11 +10,11 @@ class Login(Plugin):
     A plugin that enables logging into the game.
     """
 
-    def __init__(self, users, rooms, packet):
+    def __init__(self, users, config, packet):
         self.VERSION = "097"
         self.LOGIN_KEY_LENGTH = 15
 
-        super(Login, self).__init__(users, rooms, packet)
+        super(Login, self).__init__(users, config, packet)
 
     # Events
 

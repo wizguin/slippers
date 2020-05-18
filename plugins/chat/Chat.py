@@ -6,8 +6,8 @@ class Chat(Plugin):
     A plugin that enables sending messages and emotes.
     """
 
-    def __init__(self, users, rooms, packet):
-        super(Chat, self).__init__(users, rooms, packet)
+    def __init__(self, users, config, packet):
+        super(Chat, self).__init__(users, config, packet)
 
     def send_message(self, data, user):
         """Sends a message to a room, limiting it to 80 characters."""

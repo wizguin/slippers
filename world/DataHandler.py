@@ -15,8 +15,11 @@ class DataHandler(object):
     def __init__(self, users):
         self.users = users  # Socket assigned to user object
 
-        file = open("config/rooms.json", "r")
-        self.rooms = json.loads(file.read())
+        rooms = open("config/rooms.json", "r")
+        self.rooms = json.loads(rooms.read())
+
+        items = open("config/items.json", "r")
+        self.items = json.loads(items.read())
 
         self.packet = PacketManager(self.rooms)
         self.obs = Observable()
