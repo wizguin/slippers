@@ -11,7 +11,11 @@ class Database(object):
 
     def __init__(self, config):
         engine = create_engine("mysql+mysqlconnector://{}:{}@{}/{}".format(
-            *config["database"].values()))
+            config["database"]["user"],
+            config["database"]["password"],
+            config["database"]["host"],
+            config["database"]["database"]
+        ))
         Session = sessionmaker(bind=engine)
 
         self.session = Session()
