@@ -1,6 +1,6 @@
 class PacketManager(object):
     """
-    Deconstructs and constructs club penguin packets.
+    Deconstructs and constructs packets.
     """
 
     def __init__(self, rooms):

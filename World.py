@@ -8,7 +8,7 @@ from world.Database import Database
 
 class World(Server):
     """
-    Creates a Club Penguin game world.
+    Creates a game world.
     """
 
     def __init__(self, world_id, config):

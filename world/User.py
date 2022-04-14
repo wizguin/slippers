@@ -3,7 +3,7 @@ from world.dataHandler.PacketManager import PacketManager
 
 class User(object):
     """
-    A class that defines a Club Penguin user, user data is passed in from a
+    A class that defines a user, user data is passed in from a
     database along with other in game data.
     """
 
